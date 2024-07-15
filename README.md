@@ -89,7 +89,7 @@ This will start the web server and you can access it by going to `http://127.0.0
 
 ## Add two pages to Flask App
 
-The first page should be a simple HTML page that displays a message to the user. The second page should be a simple form that accepts a user's name and email address. When the user submits the form, the data should be sent to the server and displayed on the page.
+The first page should be a simple HTML page that displays a message to the user. The second page should be a simple form that accepts a user's name and email address. When the user submits the form, the data should be sent to the server and displayed on the form page.
 
 ```python
 from flask import Flask, render_template, request
@@ -106,6 +106,7 @@ def form():
         name = request.form['name']
         email = request.form['email']
         return f'Name: {name}, Email: {email}'
+    # else: the request method is GET
     return render_template('form.html')
 ```
 
