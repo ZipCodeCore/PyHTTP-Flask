@@ -110,9 +110,14 @@ def form():
     return render_template('form.html')
 ```
 
+Flask is a web framework that makes it easy to build web applications in Python. It provides a simple way to define routes and handle requests. In the example above, we define two routes: one for the index page and one for a form page. The index route returns a simple HTML page, while the form route handles both GET and POST requests. When a POST request is made, it reads the form data and returns a response with the submitted values. When a GET request is made, it returns the form page.
+
+
 `Do a GIT triple: Add, Commit, Push` to capture your work.
 
-## These are the two HTML files
+## HTML files
+
+These are the two HTML files that the Flask app uses to display the index and form pages.
 
 index.html
 ```html
@@ -162,6 +167,8 @@ Now add a link from the index page to the form page.
 `Do a GIT triple: Add, Commit, Push` to capture your work.
 
 #### Perhaps you are starting to see a pattern here??
+
+## Without Flask, pure Python
 
 And without Flask, you'd have to write something like this.
 The amount of code in the two examples is roughly the same, but the Flask code is more readable and easier to understand. And as apps get bigger and more complex, the Flask code will be easier to maintain and extend.

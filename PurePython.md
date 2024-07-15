@@ -1,3 +1,4 @@
+Flask is a web framework that makes it easy to build web applications in Python. But you can do the same things without Flask, and this example shows you the rough idea. The example is a simple web server that serves two HTML pages: an index page and a form page. The index page displays a welcome message, and the form page displays a form with name and email fields. When the form is submitted, the server reads the form data and returns a response with the submitted values.
 
 And without Flask, you'd have to write something like this.
 The amount of code in the two examples is roughly the same, but the Flask code is more readable and easier to understand. And as apps get bigger and more complex, the Flask code will be easier to maintain and extend.
