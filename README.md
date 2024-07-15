@@ -162,3 +162,50 @@ Now add a link from the index page to the form page.
 `Do a GIT triple: Add, Commit, Push` to capture your work.
 
 #### Perhaps you are starting to see a pattern here??
+
+And without Flask, you'd have to write something like this.
+The amount of code in the two examples is roughly the same, but the Flask code is more readable and easier to understand. And as apps get bigger and more complex, the Flask code will be easier to maintain and extend.
+
+```python
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import urllib.parse as urlparse
+
+class RequestHandler(BaseHTTPRequestHandler):
+
+    def do_GET(self):
+        if self.path == '/':
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+            with open('index.html', 'r') as file:
+                self.wfile.write(file.read().encode())
+        elif self.path == '/form':
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+            with open('form.html', 'r') as file:
+                self.wfile.write(file.read().encode())
+
+    def do_POST(self):
+        if self.path == '/form':
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            parsed_data = urlparse.parse_qs(post_data.decode())
+
+            name = parsed_data.get('name')[0]
+            email = parsed_data.get('email')[0]
+
+            response = f'Name: {name}, Email: {email}'
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+            self.wfile.write(response.encode())
+
+def run(server_class=HTTPServer, handler_class=RequestHandler, port=8000):
+    server_address = ('', port)
+    httpd = server_class(server_address, handler_class)
+    print(f'Server running on port {port}...')
+    httpd.serve_forever()
+
+run()
+```
